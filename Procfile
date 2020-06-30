@@ -1,1 +1,1 @@
-web: gunicorn ppWebApp.wsgi
+web: gunicorn mysite.wsgi --log-file -
