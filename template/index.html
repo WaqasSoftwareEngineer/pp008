@@ -1,0 +1,36 @@
+{% extends 'headerPage.html' %}
+
+{% block content%}
+
+    <h2>Placement Prediction of Students</h2>
+
+    <h3>Please enter details:</h3>
+    <br>
+    {%  if scoreval  %}
+    <form method="post" enctype="multipart/form-data" action="updateDataBase">
+    {% else %}
+    <form method="post" enctype="multipart/form-data" action="predictPP">
+    {% endif%}
+ {% csrf_token %}
+ <div class="col-md-4 col-sm-4"><label for="fname">Quantitative:</label> </div> <input name="QuantitativeVal" type="text" value={{temp.Quants}}><br><br>
+ <div class="col-md-4 col-sm-4"><label for="lname">Logical Reasoning:</label> </div> <input type="text" id="lname" name="LogicalReasoningVal" value={{temp.LogicalReasoning}}><br><br>
+ <div class="col-md-4 col-sm-4"><label for="fname">Programming:</label> </div> <input type="text" id="fname" name="ProgrammingVal" value={{temp.Programming}}><br><br>
+ <div class="col-md-4 col-sm-4"><label for="lname">CGPA:</label> </div> <input type="text" id="lname" name="CGPAVal" value={{temp.CGPA}}><br><br>
+ <div class="col-md-4 col-sm-4"><label for="fname">Communication Skills:</label></div>  <input type="text" id="fname" name="CommunicationSkillsVal" value={{temp.Communication}}><br><br>
+ <br>
+
+ {%  if scoreval  %}
+ <h1>The Probability of student will place is {{scoreval}}</h1>
+ <h3>If the response is good. Do you want to save it in DB?
+ </h3>
+ <input type="hidden" id="lname" name="mpgVal" value={{scoreval}}>
+ <input type="submit" value="Submit" ></div>
+ {% else%}
+ <input type="submit" value="Submit" ></div>
+ {% endif %}
+
+</form>
+<br>
+
+
+{% endblock %}
